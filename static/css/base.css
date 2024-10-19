@@ -16,6 +16,7 @@ body {
 .textlogo h1 {
     font-size: 3rem;
     text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 .btncontainer{
     display: flex;
@@ -24,4 +25,6 @@ body {
 .buttonlink a{
     margin: 10px;
     font-size: 1.2rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
