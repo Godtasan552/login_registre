@@ -1,0 +1,27 @@
+/* การจัดองค์ประกอบตรงกลางจอ */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.textlogo h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+.btncontainer{
+    display: flex;
+    justify-content: center;
+}
+.buttonlink a{
+    margin: 10px;
+    font-size: 1.2rem;
+}
