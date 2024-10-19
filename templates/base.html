@@ -14,8 +14,8 @@
   <div class="btncontainer">
     {% block Login %}{% endblock Login %}
 
-    <div>
-      <a href="{% url "login" %}">login</a>
-      <a href="{% url "register" %}">signup</a>
+    <div class="buttonlink">
+      <a class="btn btn-outline-danger" href="{% url "login" %}" role="button">Link</a>
+      <a class="btn btn-outline-success" href="{% url "register" %}" role="button">Link</a>
     </div>
   </div>
