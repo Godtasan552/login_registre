@@ -10,6 +10,10 @@ def loginPage(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+        
+        if not username or not password:
+            return HttpResponse("Please enter both username and password")
+        
         user = authenticate(
             request,
             username = username,
@@ -19,7 +23,7 @@ def loginPage(request):
             login(request, user)
             return redirect('/')
         else:
-                return HttpResponse("Invalid login credentials")  # เพิ่มกรณีผู้ใช้ไม่ถูกต้อง
+                return HttpResponse("Login failed. Please try again.")  # เพิ่มกรณีผู้ใช้ไม่ถูกต้อง
     return render(request, 'login.html')
 
 
