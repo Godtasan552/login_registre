@@ -8,3 +8,6 @@ def loginPage(request):
 
 def registerPage(request):
     return render(request, 'register.html')
+
+def profilePage(request):
+    return render(request, 'profile.html')
