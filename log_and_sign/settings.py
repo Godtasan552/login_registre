@@ -80,11 +80,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'MANE':'Test_login_and_register',
+        'NAME':'Test_login_and_register',
         'USER':'weerawat',
         'PASSWORD':'Gintamacoong024573',
         'HOST':'localhost',
-        'PORT':'',
+        'PORT':'5432',
     }
 }
 
@@ -136,5 +136,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_COOKIE_AGE = 7*24*60*60
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_EXPIRE_BROWSER_BLOSE = False
