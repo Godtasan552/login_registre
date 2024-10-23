@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 <!DOCTYPE html>
 <html lang="en">
-  <body></body>
+  <div class="center-content">
+    <div class="textlogo">
+      <h1>Hello Welcome Login And Sign up</h1>
+    </div>
+
+    <div class="btncontainer">
+      <div class="buttonlink">
+        <a class="btn btn-outline-danger" href="{% url 'login' %}" role="button"
+          >Login</a
+        >
+        <a
+          class="btn btn-outline-success"
+          href="{% url 'register' %}"
+          role="button"
+          >Register</a
+        >
+      </div>
+    </div>
+  </div>
 </html>
