@@ -4,8 +4,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import UserProfile
 from django.contrib.auth import logout
+
+
 def indexPage(request):
     return render(request, 'index.html')
+
 
 def loginPage(request):
     if request.method == "POST":
@@ -22,6 +25,7 @@ def loginPage(request):
             messages.error(request, 'Invalid credentials')
     return render(request, 'login.html')
 
+
 def registerPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -37,14 +41,21 @@ def registerPage(request):
         if password != confirm_password:
             messages.error(request, 'Passwords do not match')
             return render(request, 'register.html')
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create_user(
+            username=username, email=email, password=password)
         UserProfile.objects.create(user=user)
         messages.success(request, 'User created successfully')
         return redirect('login')
     return render(request, 'register.html')
 
+
 def profilePage(request):
-    user_profile = UserProfile.objects.get(user=request.user)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        # Create a new UserProfile instance for the user
+        user_profile = UserProfile.objects.create(user=request.user)
+
     form = UserProfileForm(instance=user_profile)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=user_profile)
@@ -52,8 +63,8 @@ def profilePage(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
             return redirect('profile')
-    return render(request, 'profile.html', {'profile': user_profile, 'form': form})
 
+    return render(request, 'profile.html', {'profile': user_profile, 'form': form})
 
 
 def logoutPage(request):

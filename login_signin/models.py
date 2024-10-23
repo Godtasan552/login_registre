@@ -31,4 +31,4 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
-        return self.user.username if self.user else 'No User'
+        return self.user.username
