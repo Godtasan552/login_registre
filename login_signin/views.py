@@ -25,15 +25,29 @@ def registerPage(request):
 
 def loginPage(request):
     if request.user.is_authenticated:
+        messages.info(request, _('คุณได้เข้าสู่ระบบอยู่แล้ว'))
         return redirect('profile')
     
-    if request.method. == 'POST':
+    if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            if user is not
+            if user is not None:
+                login(request, user)
+                messages.success(request, _(f'ยินดีต้อนรับกลับ {username}!'))
+                next_url = request.GET.get('next')
+                if next_url:
+                    return redirect(next_url)
+                return redirect('profile')
+            else:
+                messages.error(request, _('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'))
+        else:
+            messages.error(request, _('กรุณากรอกข้อมูลให้ถูกต้อง'))
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
 
 def profilePage(request):
     return render(request, 'profile.html')
