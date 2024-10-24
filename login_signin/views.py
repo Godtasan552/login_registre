@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from .forms import CustomUserCreationForm
+from django.contrib.auth import logout  # เพิ่มการนำเข้าตรงนี้
 from django.contrib.auth.forms import AuthenticationForm
 
 def indexPage(request):
@@ -49,5 +50,13 @@ def loginPage(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+def logout_view(request):
+    logout(request)
+    messages.info(request, _('คุณได้ออกจากระบบเรียบร้อยแล้ว'))
+    return redirect('login')
+
+@login_required
 def profilePage(request):
+    if request.method == 'POST':
+        messages.success(request, _('อัพเดทโปรไฟล์สำเร็จ'))
     return render(request, 'profile.html')
