@@ -25,9 +25,7 @@ def registerPage(request):
     return render(request, 'register.html',{'form': form})
 
 def loginPage(request):
-    if request.user.is_authenticated:
-        messages.info(request, _('คุณได้เข้าสู่ระบบอยู่แล้ว'))
-        return redirect('profile')
+    
     
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)

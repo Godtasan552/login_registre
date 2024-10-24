@@ -1,1 +1,9 @@
-<H1>profile</H1>
+{% extends "base.html" %}
+{% block content %}
+<h2>โปรไฟล์</h2>
+<p>ยินดีต้อนรับ, {{ user.username }}!</p>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">ออกจากระบบ</button>
+</form>
+{% endblock %}
